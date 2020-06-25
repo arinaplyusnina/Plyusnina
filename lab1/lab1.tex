@@ -1,0 +1,190 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode} 
+
+%---enable russian----
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+% PROBABILITY SYMBOLS
+\newcommand*\PROB\Pr 
+\DeclareMathOperator*{\EXPECT}{\mathbb{E}}
+
+
+% Sets, Rngs, ets 
+\newcommand{\N}{{{\mathbb N}}}
+\newcommand{\Z}{{{\mathbb Z}}}
+\newcommand{\R}{{{\mathbb R}}}
+\newcommand{\Zp}{\ints_p} % Integers modulo p
+\newcommand{\Zq}{\ints_q} % Integers modulo q
+\newcommand{\Zn}{\ints_N} % Integers modulo N
+
+% Landau 
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand*{\OLandau}{\bigO}
+\newcommand*{\WLandau}{\Omega}
+\newcommand*{\xOLandau}{\widetilde{\OLandau}}
+\newcommand*{\xWLandau}{\widetilde{\WLandau}}
+\newcommand*{\TLandau}{\Theta}
+\newcommand*{\xTLandau}{\widetilde{\TLandau}}
+\newcommand{\smallo}{o} %technically, an omicron
+\newcommand{\softO}{\widetilde{\bigO}}
+\newcommand{\wLandau}{\omega}
+\newcommand{\negl}{\mathrm{negl}} 
+
+% Misc
+\newcommand{\eps}{\varepsilon}
+\newcommand{\inprod}[1]{\left\langle #1 \right\rangle}
+
+ 
+\newcommand{\handout}[5]{
+  \noindent
+  \begin{center}
+  \framebox{
+    \vbox{
+      \hbox to 5.78in { {\bf Научно-исследовательская практика} \hfill #2 }
+      \vspace{4mm}
+      \hbox to 5.78in { {\Large \hfill #5  \hfill} }
+      \vspace{2mm}
+      \hbox to 5.78in { {\em #3 \hfill #4} }
+    }
+  }
+  \end{center}
+  \vspace*{4mm}
+}
+
+\newcommand{\lecture}[4]{\handout{#1}{#2}{#3}{Scribe: #4}{Тема #1}}
+
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+\newtheorem{definition}{Определение}
+\newtheorem{corollary}{Следствие}
+\newtheorem{fact}{Факт}
+
+% 1-inch margins
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+\textheight 8.9in
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+\textwidth 6.5in
+
+\parindent 0in
+\parskip 1.5ex
+
+\begin{document}
+
+\lecture{}{Лето 2020}{}{Плюснина Арина}
+целые числа $2, 3, ..., 11$ в $(p-3)/2=5$ пар, каждое из произведений которых сравнимо с $1$ по модулю $13$. Запишем эти сравнения: 
+\begin{center}
+	$2\cdot7\equiv 1\mod 13$,
+	\\$3\cdot9\equiv 1\mod 13$,
+	\\$4\cdot10\equiv 1\mod 13$,
+	\\$5\cdot8\equiv 1\mod 13$,
+	\\$6\cdot11\equiv 1\mod 13$.
+\end{center}
+Умножение вышеприведенных сравнений дает результат
+\begin{center}
+	$11! = (2\cdot7)(3\cdot9)(4\cdot10)(5\cdot8)(6\cdot11)\equiv1\mod13$
+\end{center}
+и также
+\begin{center}
+	$12!\equiv12\equiv-1\mod13$
+\end{center}
+Таким образом, $(p-1)!\equiv-1\mod p$, где $p=13$.
+Верно и обратное утверждение теоремы Вильсона: если $(n-1)!\equiv-1\mod n$,то $n$ должно быть простым числом. Ибо, если $n$ не простое, то $n$ имеет делитель с $d$ такой, что $1<d<n$. Кроме того, поскольку $d\le n-1$, $d$ одно из коэффициентов в $(n-1)!$, где $d\mid(n-1)!$. Теперь мы предполагаем, что $n\mid(n-1)!+1$, и также $d\mid(n-1)!+1$. Вывод состоит в том, что $d\mid1$, что противоречит начальному утверждению.
+Взятые вместе, теорема Вильсона и ее обратное утверждение составляют необходимое и достаточное условие для определения примитивности; а именно, целое $n>1$ является простым тогда и только тогда, когда $(n-1)!\equiv-1\mod n$.К счастью, этот тест представляет скорее теоретический, чем практический интерес, т.к. по мере увеличения $n$, $(n-1)!$ быстро становится неуправляемым в размерах.
+Мы хотели бы закончить эту главу применением теоремы Вильсона к изучения квадратичных сравнений.[Понятно, что \textit{квадратичное сравнение} означает сравнение вида $ax^2+bx+c\equiv0\mod n$,где $a\neq0$.] Это и есть содержание
+\begin{theorem}
+	Квадратичное сравнение $x^2+1\equiv 0 \mod p$, где $p$ - простое число, имеет решение тогда и только тогда, когда $p\equiv 1\mod 4$
+\end{theorem}
+\begin{proof}
+	Пусть $a$ является решением $x^2+1\equiv p\mod p$, тогда $a^2\equiv-1\mod p$. Поскольку $p\nmid a$, результатом применения теоремы Ферма будет:
+	\begin{center}
+		$1\equiv a^{p-1}\equiv (a^2)^{(p-1)/2}\equiv (-1)^{(p-1)/2}\mod p.$
+	\end{center}
+Возможность того, что $p=4k+3$ для некоторого $k$ не возникает. Если бы это было так, мы бы это сделали
+\begin{center}
+	$(-1)^{(p-1)/2}=(-1)^{2k+1}=-1$;
+\end{center}
+следовательно, $1\equiv-1\mod p$. Конечным результатом этого является то, что $p\mid2$, которое является заведомо ложным. Следовательно, $p$ должен иметь вид $4k+1$.
+Теперь в противоположном направлении. В выражении
+\begin{center}
+	$(p-1)!=1\cdot2\cdot\cdot\cdot\frac{p-1}{2}\cdot\frac{p+1}{2}\cdot\cdot\cdot(p-2)(p-1)$
+\end{center}
+мы имеем следующие сравнения
+\begin{center}
+	$p-1\equiv-1\mod p$,
+	\\$p-2\equiv-2\mod p$,
+	\\$\cdot\cdot\cdot$
+	\\$\frac{p+1}{2}\equiv-\frac{p-1}{2}\mod p$.
+\end{center}
+Перестановка коэффициентов приводит 
+\begin{center}
+	$(p-1)!=1\cdot(-1)\cdot2\cdot(-2)\cdot\cdot\cdot\frac{p-1}{2}\cdot(-\frac{p-1}{2})\mod p\equiv(-1)^{(p-1)/2}(1\cdot2\cdot\cdot\cdot\frac{p-1}{2})^2\mod p$
+\end{center}
+т.к. здесь $(p-1)/2$ задействованы минусовые знаки. Именно в этот момент теорема Вильсона может быть применена; ибо, $(p-1)!\equiv-1\mod p$, откуда 
+\begin{center}
+	$-1\equiv(-1)^{(p-1)/2}[(\frac{p-1}{2})!]^2\mod p$.
+\end{center}
+Если мы предположим, что $p$ имеет вид $4k+1$, то $(-1)^{(p-1)/2}=1$, оставляет нас со сравнением 
+\begin{center}
+	$-1\equiv[(\frac{p-1}{2})!]^2\mod p$.
+\end{center}
+Вывод: $[(p-1)/2]!$ удовлетворяет квадратичному сравнению $x^2+1\equiv 0 \mod p$.
+\end{proof}
+Давайте рассмотрим реальный пример, скажем, случай $p=13$, который является простым числом вида $4k+1$. Здесь, мы имеем $(p-1)/2=6$ и легко увидеть, что 
+\begin{center}
+	$6!=720\equiv5\mod13$,
+\end{center}
+пока
+\begin{center}
+	$5^2+1=26\equiv0\mod13$.
+\end{center}
+Таким образом утверждение $[(\frac{1}{2}(p-1))!]^2+1\mod p$ выполняется для $p=13$.
+Теорема Вильсона подразумевает, что существует бесконечность составных чисел вида $n!+1$. С другой стороны, это открытый вопрос, является ли $n!+1$ простым числом для бесконечно многих значений $n$. Единственные значения в диапазоне $1\le n\le100$, для которых $n!-1$, как известно, является простым числом, $n=1,2,3,11,27,37,41,73$, и $77$. 
+\paragraph{Задания 5.4}
+\begin{enumerate}
+	\item\begin{enumerate}
+		\item Найдите остаток от деления $15!$ на $17$.
+		\item Найдите остаток от деления $2(26!)$ на $29$. [\textit{Подсказка:} Из теоремы Вильсона, $2(p-3)!\equiv-1\mod p$ для некоторого простого числа $p>3$.]
+		\end{enumerate}
+	\item Определите, является ли число $17$ простым, решив верно ли $16!\equiv-1\mod 17$.
+	\item Расположите числа $2$, $3$, $4$, ..., $21$ в пары вида $a$ и $b$ со свойством $ab\equiv-1\mod23$.
+	\item Покажите, что $18!\equiv-1\mod437$.
+	\item\begin{enumerate}
+		\item Докажите, что целое число $n>1$ простое тогда и только тогда, когда $(n-2)!\equiv1\mod n$.
+		\item Если $n$ составное число, покажите, что $(n-1)!\equiv0\mod n$, кроме $n=4$.
+		\end{enumerate}
+	\item Учитывая, что $p$ простое, установите сравнение
+	\begin{center}
+		$(p-1)!\equiv p-1\mod 1+2+3+\cdot\cdot\cdot+(p-1)$.
+	\end{center}
+	\item Если $p$ простое число, докажите, что
+	\begin{center}
+		$p\mid a^p+(p-1)!a$ и $p\mid(p-1)!a^p+a$
+	\end{center}
+	для некоторого целого $a$. [\textit{Подсказка:} Из теоремы Вильсона, $a^p+(p-1)!a\equiv a^p-a\mod p$.]
+	\item Найдите два простых числа $p\le13$, для которого сравнение $(p-1)!\equiv-1\mod p^2$ выполняется.
+	\item Используя теорему Вильсона, докажите, что 
+	\begin{center}
+		$1^2\cdot3^2\cdot5^2\cdot\cdot\cdot(p-2)^2\equiv(-1)^{(p+1)/2}\mod p$
+	\end{center}
+	для некоторого простого числа $p$. [\textit{Подсказка:} Поскольку $k\equiv-(p-k)\mod p$, из этого следует, что $2\cdot4\cdot6\cdot\cdot\cdot(p-1)\equiv(-1)^{(p-1)/2}1\cdot3\cdot5\cdot\cdot\cdot(p-2)\mod p$.]
+	\item\begin{enumerate}
+		\item Для простого $p$ вида $4k+3$, докажите, что если 
+		\begin{center}
+			$(\frac{p-1}{2})!\equiv1\mod p$ или $(\frac{p-1}{2})!\equiv-1\mod p$;
+		\end{center}
+		следовательно, $[(p-1)/2]!$ удовлетворяет квадратичному сравнению $x^2\equiv1\mod p$.
+		\item Используйте $\pod a$, чтобы показать, что если $p=4k+3$ является простым, то произведение всех простых чисел, меньших, чем $p$, сравнимы по модулю $p$ с $1$ или $-1$. [\textit{Подсказка:} Теорема Ферма подразумевает, что $2^{(p-1)/2}\equiv\pm1\mod p$.]
+		\end{enumerate}
+	\item Примените Теорему $5-3$, чтобы найти решения для квадратичных сравнений $x^2\equiv-1\mod 29$ и $x^2\equiv-1(mod 37)$
+	\item Покажите, что если $p=4k+3$ является простым и $a^2+b^2\equiv0\mod p$, то $a\equiv b\equiv0\mod p$. [\textit{Подсказка:} Если $a\ne0\mod p$, то существует целое $c$ такое, что $ac\equiv1\mod p$; используйте этот факт, чтобы противоречить Теореме $5-3$.]
+\end{enumerate}
+\paragraph{Bibliography.}
+\end{document}
