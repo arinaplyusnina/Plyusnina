@@ -3,7 +3,8 @@
 \usecolortheme{spruce}
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
-\title{Натуральные целые числа}
+\usepackage{amsmath}
+\title{Многочлены}
 \subtitle{Введение в специальность}
 \author{Арина Плюснина}
 \institute{БФУ им. И. Канта}
@@ -12,33 +13,28 @@
 \begin{frame}
 	\titlepage
 \end{frame}
-\begin{frame}{Задачи}
-	\begin{enumerate}
-		\item Изучить основные понятия и теоремы
-		\item Использовать их для дальнейшего изучения материала
-	\end{enumerate}
-\end{frame}
-\begin{frame}
-	\frametitle{План}
-	\tableofcontents
-	\section{Основные понятия}
-	\subsection{Принцип минимальность}
-	\subsection{Принцип индукции}
-	\section{Начало Криптографии}
-	\section{Целые числа}
-	\subsection{Алгоритм Евклида}
-	\subsection{Лемма Евклида}
-	\subsection{Основная теорема арифметики}
-	\section{Сравнения}
-	\subsection{Определение и свойства}
-	\subsection{Класс вычитов}
-	\subsection{НОД}
-	\section{Простейшие аффинные криптосистемы}
+\begin{frame}{Основные понятия}
+	\textbf{Многочлен} - это выражение вида \begin{center}$f(T)=a_{n} T^n+a_{n-1}T^{n-1}+...+a_1T^1+a_0$,
+	\end{center}
+	где $a_i\in K$, $K$ - произвольное поле;
+	$a_n$ -  старший коэффициент;
+	$n=\deg f$ - степень многочлена.
+	\newline $K[T]$ - множество многочленов от переменной $T$ с коэффициентами из поля $K$ - коммутативное кольцо.
+	\newline \textbf{Теорема Безу:} $f(T)\in K[T]$ \textit{имеет корень} $\rho\in K$ \textit{тогда и только тогда, когда} $f(T)$ \textit{делится на} $T-\rho$.
+	\newline \textbf{Замечание:} Количество корней $S$ многочлена $f(T)\in K[T]$ не превосходит степень $f(T)$: $S\le\deg f(T)$. В частности, если $S=\deg f(T)$ $\Rightarrow$ $f(T)=(T-\rho_1)\cdot...\cdot(T-\rho_s)\cdot a_s$, $a_s$ - старший коэффициент. 
 \end{frame}
 
-\begin{frame}{Вывод}
-	\begin{itemize}
-	\item Тема была изучена
-	\end{itemize}	
-\end{frame}
+\begin{frame}{Основные понятия}
+	Опр: $\rho\in K$ называют \textbf{корнем кратности} $k$ многочлена $f(T)$, если 
+	\begin{center}
+		$f(T)=(T-\rho)^kh(T)$, $h(T)\ne0$.
+	\end{center}
+	\textbf{Предложение:} $\sqsupset f(T)\in K[T]$, $\rho\in K$ \textit{есть кратный корень} $f(T)$ $\Leftrightarrow$ $f'(\rho)=0$
+	\newline \textbf{Замечание:} рассмотрим $f(T)=aT^3+bT^2+cT+d$, $a,b,c,d\in K$, $a\ne0$
+	\newline Теорема Виета для кубического уравнения:
+	\begin{center}
+		$\rho_1+\rho_2+\rho_3=-\frac{b}{a}$ \\$\rho_1\rho_2+\rho_2\rho_3+\rho_1\rho_3=\frac{c}{a}$ \\$\rho_1\rho_2\rho_3=-\frac{d}{a}$  
+	\end{center}
+	\end{frame}
+
 \end{document}
