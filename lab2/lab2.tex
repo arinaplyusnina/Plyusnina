@@ -10,31 +10,37 @@
 \institute{БФУ им. И. Канта}
 \date{\today}
 \begin{document}
-\begin{frame}
-	\titlepage
-\end{frame}
-\begin{frame}{Основные понятия}
-	\textbf{Многочлен} - это выражение вида \begin{center}$f(T)=a_{n} T^n+a_{n-1}T^{n-1}+...+a_1T^1+a_0$,
-	\end{center}
-	где $a_i\in K$, $K$ - произвольное поле;
-	$a_n$ -  старший коэффициент;
-	$n=\deg f$ - степень многочлена.
-	\newline $K[T]$ - множество многочленов от переменной $T$ с коэффициентами из поля $K$ - коммутативное кольцо.
-	\newline \textbf{Теорема Безу:} $f(T)\in K[T]$ \textit{имеет корень} $\rho\in K$ \textit{тогда и только тогда, когда} $f(T)$ \textit{делится на} $T-\rho$.
-	\newline \textbf{Замечание:} Количество корней $S$ многочлена $f(T)\in K[T]$ не превосходит степень $f(T)$: $S\le\deg f(T)$. В частности, если $S=\deg f(T)$ $\Rightarrow$ $f(T)=(T-\rho_1)\cdot...\cdot(T-\rho_s)\cdot a_s$, $a_s$ - старший коэффициент. 
-\end{frame}
-
-\begin{frame}{Основные понятия}
-	Опр: $\rho\in K$ называют \textbf{корнем кратности} $k$ многочлена $f(T)$, если 
-	\begin{center}
-		$f(T)=(T-\rho)^kh(T)$, $h(T)\ne0$.
-	\end{center}
-	\textbf{Предложение:} $\sqsupset f(T)\in K[T]$, $\rho\in K$ \textit{есть кратный корень} $f(T)$ $\Leftrightarrow$ $f'(\rho)=0$
-	\newline \textbf{Замечание:} рассмотрим $f(T)=aT^3+bT^2+cT+d$, $a,b,c,d\in K$, $a\ne0$
-	\newline Теорема Виета для кубического уравнения:
-	\begin{center}
-		$\rho_1+\rho_2+\rho_3=-\frac{b}{a}$ \\$\rho_1\rho_2+\rho_2\rho_3+\rho_1\rho_3=\frac{c}{a}$ \\$\rho_1\rho_2\rho_3=-\frac{d}{a}$  
-	\end{center}
+	\begin{frame}
+		\titlepage
 	\end{frame}
-
+	\begin{frame}{Основные понятия}
+		\newtheorem{opr}{Определение}
+		\newtheorem{theorm}{Теорема}
+		\begin{opr}Многочлен - это выражение вида
+			\[f(T)=a_{n} T^n+a_{n-1}T^{n-1}+...+a_1T^1+a_0,\]
+			где $a_i\in K$, $K$ - произвольное поле;
+			$a_n$ -  старший коэффициент;
+			$n=\deg f$ - степень многочлена.
+		\end{opr}
+			\begin{theorm}[Теорема Безу] $f(T)\in K[T]$ имеет корень $\rho\in K$ тогда и только тогда, когда $f(T)$ делится на $T-\rho$.
+			\end{theorm}
+	\end{frame}
+	
+	\begin{frame}{Основные понятия}
+		
+		\begin{opr}
+			$\rho\in K$ называют \textbf{корнем кратности} $k$ многочлена $f(T)$, если 
+				\[f(T)=(T-\rho)^kh(T), h(T)\ne0.\]
+		\end{opr}
+		\begin{itemize}
+			\item Теорема Виета для кубического уравнения:
+			\begin{equation*}
+			\begin{split}
+			\rho_1+\rho_2+\rho_3&=-\frac{b}{a}
+			\\\rho_1\rho_2+\rho_2\rho_3+\rho_1\rho_3&=\frac{c}{a}
+			\\\rho_1\rho_2\rho_3&=-\frac{d}{a}
+			\end{split}
+			\end{equation*}
+		\end{itemize}
+	\end{frame}
 \end{document}
